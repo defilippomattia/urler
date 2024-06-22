@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  urler-frontend:
+    container_name: urler-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8058
+
+  urler-backend:
+    container_name: urler-backend
+    build:
+      context: ./backend
+    ports:
+      - "8058:8058"
+    volumes:
+      - ./db.json:/usr/src/urler-backend/db.json
