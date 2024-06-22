@@ -4,7 +4,7 @@ Simple Web Application for listing URLs, configurable with a JSON file.
 
 Configure `db.json` to your liking and start the app.
 
-![alt text](https://github.com/defilippomattia/urler/assets/34513340/9063be15-c879-47bf-bb7e-c86b0f278135)
+![alt text](https://github.com/defilippomattia/urler/assets/34513340/30475cea-a9c3-46bb-853c-07410424d3c7)
 
 ## Start for development
 

@@ -2,45 +2,40 @@
     "environments": {
         "test": [
             {
-                "name":"grafana",
+                "name":"Grafana UI",
                 "url":"http://localhost:3000"
             },
             {
-                "name":"wazuh",
+                "name":"Pgadmin01",
                 "url":"http://localhost:3001"
             },
             {
-                "name":"mydb",
+                "name":"Supervisor",
                 "url":"http://localhost:30021"
             }
         ],
         "preprod": [
             {
-                "name":"wilfgly",
-                "url":"http://localhost:31000",
-                "hidden":false
+                "name":"Wildfly Admin Console",
+                "url":"http://localhost:31000"
             },
             {
-                "name":"pgdb",
-                "url":"http://localhost:4021",
-                "hidden":false
+                "name":"Kubernetes Dashboard",
+                "url":"http://localhost:4021"
             }
         ],
         "prod": [
             {
-                "name":"keycloak",
-                "url":"http://localhost:30200",
-                "hidden":false
+                "name":"Kibana",
+                "url":"http://localhost:30200"
             },
             {
-                "name":"wazuh",
-                "url":"http://localhost:31001",
-                "hidden":false
+                "name":"Wildfly Admin Console",
+                "url":"http://localhost:31001"
             },
             {
-                "name":"mydb",
-                "url":"http://localhost:32021",
-                "hidden":false
+                "name":"Pgadmin01",
+                "url":"http://localhost:32021"
             }
         ]
     }
