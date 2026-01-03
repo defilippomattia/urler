@@ -13,23 +13,35 @@ const db = {
     { "name": "Test Website", "url": "https://test.example.com", "comment": "Frontend testing environment" }
   ],
   "UAT": [
-    { "name": "UAT API", "url": "https://uat-api.example.com", "comment": "Staging environment" }
+    { "name": "UAT API", "url": "https://uat-api-with-a-very-long-subdomain-for-testing.example.com", "comment": "Staging environment" }
   ],
   "Production": [
     { "name": "Production API", "url": "https://api.example.com", "comment": "Live production API" }
   ]
 };
 
-// Sub-component to ensure each row has its own independent "copied" state
 function UrlRow({ item }: { item: { name: string, url: string, comment: string } }) {
   const clipboard = useClipboard({ timeout: 2000 });
 
   return (
     <Table.Tr>
-      <Table.Td fw={500}>{item.name}</Table.Td>
+      <Table.Td fw={500} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        {item.name}
+      </Table.Td>
       <Table.Td>
         <Group gap="xs" wrap="nowrap">
-          <Anchor href={item.url} target="_blank" size="sm" style={{ wordBreak: 'break-all' }}>
+          <Anchor 
+            href={item.url} 
+            target="_blank" 
+            size="sm" 
+            style={{ 
+              display: 'block',
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis', 
+              whiteSpace: 'nowrap',
+              maxWidth: '100%' 
+            }}
+          >
             {item.url}
           </Anchor>
           <Tooltip label={clipboard.copied ? "Copied" : "Copy URL"}>
@@ -37,6 +49,7 @@ function UrlRow({ item }: { item: { name: string, url: string, comment: string }
               variant="subtle" 
               color={clipboard.copied ? 'teal' : 'gray'} 
               onClick={() => clipboard.copy(item.url)}
+              flex="0 0 auto"
             >
               {clipboard.copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
             </ActionIcon>
@@ -44,7 +57,9 @@ function UrlRow({ item }: { item: { name: string, url: string, comment: string }
         </Group>
       </Table.Td>
       <Table.Td>
-        <Text size="sm" c="dimmed">{item.comment}</Text>
+        <Text size="sm" c="dimmed" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {item.comment}
+        </Text>
       </Table.Td>
       <Table.Td>
         <Button 
@@ -80,12 +95,9 @@ export default function App() {
     }, {} as typeof db);
   }, [search]);
 
-  // All environment names for the default open state of the Accordion
-  const envKeys = Object.keys(db);
-
   return (
     <MantineProvider defaultColorScheme="dark">
-      <Container size="md" py="xl">
+      <Container size="lg" py="xl">
         <Stack gap="xl">
           <Title order={2} ta="center">urler</Title>
 
@@ -103,7 +115,7 @@ export default function App() {
           />
 
           {Object.keys(filteredData).length > 0 ? (
-            <Accordion multiple defaultValue={envKeys}>
+            <Accordion multiple defaultValue={Object.keys(db)}>
               {Object.entries(filteredData).map(([envName, items]) => (
                 <Accordion.Item key={envName} value={envName}>
                   <Accordion.Control>
@@ -114,13 +126,13 @@ export default function App() {
                   </Accordion.Control>
                   
                   <Accordion.Panel>
-                    <Table striped highlightOnHover verticalSpacing="sm">
+                    <Table striped highlightOnHover verticalSpacing="sm" layout="fixed">
                       <Table.Thead>
                         <Table.Tr>
-                          <Table.Th>Name</Table.Th>
-                          <Table.Th>URL</Table.Th>
-                          <Table.Th>Comment</Table.Th>
-                          <Table.Th>Action</Table.Th>
+                          <Table.Th style={{ width: '20%' }}>Name</Table.Th>
+                          <Table.Th style={{ width: '45%' }}>URL</Table.Th>
+                          <Table.Th style={{ width: '25%' }}>Comment</Table.Th>
+                          <Table.Th style={{ width: '10%' }}>Action</Table.Th>
                         </Table.Tr>
                       </Table.Thead>
                       <Table.Tbody>
