@@ -1,0 +1,12 @@
+{
+  "Test": [
+    { "name": "Test API 25", "url": "https://test-api1.example.com", "comment": "" },
+    { "name": "Test Website", "url": "https://test.example.com", "comment": "Frontend testing environment" }
+  ],
+  "UAT": [
+    { "name": "UAT API", "url": "https://uat-api-with-a-very-long-subdomain-for-testing.example.com", "comment": "Staging environment" }
+  ],
+  "Production": [
+    { "name": "Production API 2", "url": "https://api.example.com", "comment": "Live production API" }
+  ]
+}

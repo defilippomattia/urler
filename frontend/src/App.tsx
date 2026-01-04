@@ -6,19 +6,7 @@ import {
 } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
 import { IconCopy, IconCheck, IconSearch, IconX } from '@tabler/icons-react';
-
-const db = {
-  "Test": [
-    { "name": "Test API 2", "url": "https://test-api1.example.com", "comment": "" },
-    { "name": "Test Website", "url": "https://test.example.com", "comment": "Frontend testing environment" }
-  ],
-  "UAT": [
-    { "name": "UAT API", "url": "https://uat-api-with-a-very-long-subdomain-for-testing.example.com", "comment": "Staging environment" }
-  ],
-  "Production": [
-    { "name": "Production API", "url": "https://api.example.com", "comment": "Live production API" }
-  ]
-};
+import db from './db.json';
 
 function UrlRow({ item }: { item: { name: string, url: string, comment: string } }) {
   const clipboard = useClipboard({ timeout: 2000 });
@@ -90,7 +78,7 @@ export default function App() {
         item.url.toLowerCase().includes(query) ||
         item.comment.toLowerCase().includes(query)
       );
-      if (filteredItems.length > 0) acc[env] = filteredItems;
+      if (filteredItems.length > 0) (acc as any)[env] = filteredItems;
       return acc;
     }, {} as typeof db);
   }, [search]);
