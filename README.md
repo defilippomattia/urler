@@ -13,4 +13,3 @@ http://localhost:8855
 
 # Screenshot
 
-![urler screenshot](https://github.com/user-attachments/assets/73bb5d8f-ec09-4334-85c2-e489a15b5040)
